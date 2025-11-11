@@ -1,5 +1,5 @@
 ---
-title: The Wonderful Wizard of Oz - Introduction
+title: 'The Wonderful Wizard of Oz: Introduction'
 author: L. Frank Baum
 date: '2025-11-11 00:00:00 -0800'
 layout: post
