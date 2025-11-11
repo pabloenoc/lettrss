@@ -1,0 +1,13 @@
+title: lettrss.com
+author: Pablo Enoc
+description: >-
+  lettrss syndicates public domain books via RSS.
+url: "https://lettrss.com"
+baseurl: "/"
+
+timezone: America/Los_Angeles
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll_slugify
