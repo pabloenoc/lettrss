@@ -5,8 +5,8 @@ permissions:
 
 on:
   schedule:
-    # 5pm PST = 1am UTC
-    - cron: "0 1 * * *"
+    # 6pm PST = 2am UTC
+    - cron: "0 2 * * *"
 
 jobs:
   build:
