@@ -1,0 +1,29 @@
+name: Daily Build
+
+on:
+  schedule:
+    # 5pm PST = 1am UTC
+    - cron: "0 1 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.1"   # or whatever version you use
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: JEKYLL_ENV=production bundle exec jekyll build --trace
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
