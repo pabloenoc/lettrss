@@ -5,8 +5,9 @@ permissions:
 
 on:
   schedule:
-    # 6:30pm PST = 2:30am UTC as a test...
-    - cron: "30 2 * * *"
+    # 10pm PST = 6am UTC
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
 
 jobs:
   build:
