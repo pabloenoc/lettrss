@@ -7,7 +7,6 @@ on:
   schedule:
     # 5pm PST = 1am UTC
     - cron: "0 1 * * *"
-  workflow_dispatch: {}
 
 jobs:
   build:
