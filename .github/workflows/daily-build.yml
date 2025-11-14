@@ -1,5 +1,8 @@
 name: Daily Build
 
+permissions:
+  contents: write
+
 on:
   schedule:
     # 5pm PST = 1am UTC
