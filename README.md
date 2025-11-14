@@ -1,3 +1,5 @@
+[![Daily Build](https://github.com/pabloenoc/lettrss/actions/workflows/daily-build.yml/badge.svg)](https://github.com/pabloenoc/lettrss/actions/workflows/daily-build.yml)
+
 # lettrss
 
 lettrss syndicates books in the public domain via RSS.
