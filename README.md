@@ -7,6 +7,10 @@ lettrss syndicates books in the public domain via RSS.
 
 ## Changelog
 
+### [v0.3.0] - 2025-12-13
+
+- Added release schedule for current book
+
 ### [v0.2.0] - 2025-11-13
 
 - Move to GitHub Pages 
