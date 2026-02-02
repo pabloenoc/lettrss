@@ -62,3 +62,7 @@ button:hover, a.button:hover {
 	cursor: pointer;
 	background-color: #065f46;
 }
+
+li {
+    margin-block: 0.5rem;
+}
