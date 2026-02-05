@@ -74,14 +74,16 @@ Subscribe
     	</a>
 
 	<h2 style="margin-top: 4rem;">Schedule</h2>
+	{% assign reading_schedule = "Feb 01:Chapter I,Feb 02:Chapter II,Feb 03:Chapter III,Feb 04:Chapter IV,Feb 05:Chapter V,Feb 06:Chapter VI,Feb 07:Chapter VII" | split: "," %}
+	{% assign today = site.time | date: '%b %d' %}
+
 	<ul style="text-align: start; list-style: none;">
-	    <li>(02/01) Chapter I</li>
-	    <li  style="color: var(--color-brand);">(02/02) Chapter II</li>
-	    <li>(02/03) Chapter III</li>
-	    <li>(02/04) Chapter IV</li>
-	    <li>(02/05) Chapter V</li>
-	    <li>(02/06) Chapter VI</li>
-	    <li>(02/07) Chapter VII</li>
+	  {% for entry in reading_schedule %}
+	  {% assign parts = entry | split: ":" %}
+	  {% assign date = parts[0] %}
+	  {% assign chapter = parts[1] %}
+	  <li{% if date == today %} style="color: var(--color-brand);"{% endif %}>({{ date }}) {{ chapter }}</li>
+	  {% endfor %}
 	</ul>
     </main>
     <footer>
