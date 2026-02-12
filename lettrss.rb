@@ -6,7 +6,25 @@
 require 'fileutils'
 require 'date'
 
-def convert_xhtml_to_md(repo_name, start_date)
+def prepend_front_matter(file_path, date, author_name)
+  content = File.read(file_path)
+
+  formatted_date = "#{date.strftime('%Y-%m-%d')} 17:00:00 -0800"
+
+  front_matter = <<~YAML
+  ---
+  title: CHAPTER TITLE
+  author: #{author_name}
+  date: '#{formatted_date}'
+  layout: post
+  ---
+
+  YAML
+
+  File.write(file_path, front_matter + content)
+end
+
+def convert_xhtml_to_md(repo_name, start_date, author_name, section_delimeter)
   input_path  = "_epubs/#{repo_name}/src/epub/text"
   output_path = "_posts/#{repo_name}"
 
@@ -16,12 +34,12 @@ def convert_xhtml_to_md(repo_name, start_date)
 
   files = Dir.glob("#{input_path}/*.xhtml")
 
-  # Only filenames that have 'chapter' in them
-  chapter_files = files.select { |f| File.basename(f).match?(/chapter-\d+/i) }
+  # Convert files only if they have the word from the delimeter in them
+  chapter_files = files.select { |f| File.basename(f).match?(/#{section_delimeter}-\d+/i) }
 
-  # Sort by chapter number
+  # Sort by chapter number not alphabetically
   chapter_files.sort_by! do |file|
-    File.basename(file)[/chapter-(\d+)/i, 1].to_i
+    File.basename(file)[/#{section_delimeter}-(\d+)/i, 1].to_i
   end
 
   chapter_files.each do |file|
@@ -39,6 +57,7 @@ def convert_xhtml_to_md(repo_name, start_date)
     )
 
     if success
+      prepend_front_matter(md_file, current_date, author_name)
       puts "Converted #{dated_name}"
       current_date += 1
     else
@@ -46,7 +65,6 @@ def convert_xhtml_to_md(repo_name, start_date)
     end
   end
 end
-
 
 welcome_message = <<TEXT
 
@@ -93,6 +111,15 @@ if selection === 3
   puts "\nRepository name:\n"
   print '> '
   repo_name = gets.chomp.strip
+
+  puts "\nSection delimiter (e.g. Chapter, Book, Unit):\n"
+  print '> '
+  section_delimeter = gets.chomp.strip
+
+  puts "\nAuthor name:\n"
+  print '> '
+  author_name = gets.chomp.strip
+  
   puts "\nSyndication start date (YYYY-MM-DD):\n"
   print '> '
   start_date = gets.chomp.strip
@@ -105,7 +132,7 @@ if selection === 3
 
   if confirm === "y"
     puts "\nStarting conversion process...\n"
-    convert_xhtml_to_md(repo_name, start_date)
+    convert_xhtml_to_md(repo_name, start_date, author_name, section_delimeter)
   end
   
 end
