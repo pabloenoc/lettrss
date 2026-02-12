@@ -7,6 +7,13 @@ lettrss syndicates books in the public domain via RSS.
 
 ## Changelog
 
+### [v0.4.0] - 2026-02-11
+
+Automation for book creation and syndication
+- Source books
+- Convert each section (e.g. chapters) to a corresponding markdown file with Jekyll-style front matter
+- Set syndication start date
+
 ### [v0.3.0] - 2025-12-13
 
 - Added release schedule for current book
