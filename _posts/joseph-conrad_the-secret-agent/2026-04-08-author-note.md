@@ -1,7 +1,7 @@
 ---
 title: Author Note
 author: Joseph Conrad
-date: '2026-04-08 17:00:00 -0800'
+date: '2026-04-08 16:00:00 -0700'
 layout: post
 ---
 
