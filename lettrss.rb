@@ -9,7 +9,7 @@ require 'date'
 def prepend_front_matter(file_path, date, author_name)
   content = File.read(file_path)
 
-  formatted_date = "#{date.strftime('%Y-%m-%d')} 17:00:00 -0800"
+  formatted_date = "#{date.strftime('%Y-%m-%d')} 16:00:00 -0700"
 
   front_matter = <<~YAML
   ---
